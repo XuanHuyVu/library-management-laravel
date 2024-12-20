@@ -61,6 +61,24 @@ class BookController extends Controller
     }
 
     /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, string $id)
+    {
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        $book = Book::find($id);
+        $book->update($request->all());
+        return redirect()->route('books.index') ->with('success', 'Cập nhật sách thành công');
+    }
+
+    /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
