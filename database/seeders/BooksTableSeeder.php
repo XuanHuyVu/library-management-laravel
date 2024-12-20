@@ -12,16 +12,18 @@ class BooksTableSeeder extends Seeder
     /**
      * Run the database seeds.
      */
+    
     public function run(): void
     {
         $faker = Faker::create();
-        foreach (range(1, 30) as $index) {
+
+        for ($i = 0; $i < 10; $i++) {
             Book::create([
-                'name' => $faker->sentence(),
-                'author' => $faker->name(),
-                'category' => $faker->word(),
-                'year' => $faker->year(),
-                'quantity' => $faker->randomDigit(),
+                'name' => $faker->sentence(3),
+                'author' => $faker->name,
+                'category' => $faker->word,
+                'year' => $faker->year,
+                'quantity' => $faker->numberBetween(1, 10),
             ]);
         }
     }
