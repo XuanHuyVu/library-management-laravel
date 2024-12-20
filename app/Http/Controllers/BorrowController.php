@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Borrow;
+use App\Models\Reader;
+use App\Models\Book;
 
 class BorrowController extends Controller
 {
@@ -22,7 +24,9 @@ class BorrowController extends Controller
     public function create()
     {
         $borrow = new Borrow();
-        return view('borrows.create', compact('borrow'));
+        $readers = Reader::all();
+        $books = Book::all();
+        return view('borrows.create', compact('borrow', 'readers', 'books'));
     }
 
     /**
@@ -56,7 +60,9 @@ class BorrowController extends Controller
     public function edit(string $id)
     {
         $borrow = Borrow::find($id);
-        return view('borrows.edit', compact('borrow'));
+        $readers = Reader::all();
+        $books = Book::all();
+        return view('borrows.edit', compact('borrow', 'readers', 'books'));
     }
 
     /**
