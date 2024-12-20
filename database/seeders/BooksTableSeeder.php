@@ -1,0 +1,28 @@
+<?php
+
+namespace Database\Seeders;
+
+use App\Models\Book;
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use Faker\Factory as Faker;
+
+class BooksTableSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     */
+    public function run(): void
+    {
+        $faker = Faker::create();
+        foreach (range(1, 30) as $index) {
+            Book::create([
+                'name' => $faker->sentence(),
+                'author' => $faker->name(),
+                'category' => $faker->word(),
+                'year' => $faker->year(),
+                'quantity' => $faker->randomDigit(),
+            ]);
+        }
+    }
+}
