@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Book;
 
 class BookController extends Controller
 {
@@ -11,7 +12,8 @@ class BookController extends Controller
      */
     public function index()
     {
-        //
+        $books = Book::all();
+        return view('books.index', compact('books'));
     }
 
     /**
@@ -19,7 +21,8 @@ class BookController extends Controller
      */
     public function create()
     {
-        //
+        $book = new Book();
+        return view('books.create', compact('book'));
     }
 
     /**
@@ -27,7 +30,16 @@ class BookController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required',
+            'author' => 'required',
+            'category' => 'required',
+            'year' => 'required',
+            'quantity' => 'required'
+        ]);
+
+        Book::create($request->all());
+        return redirect()->route('books.index') ->with('success', 'Thêm sách thành công');
     }
 
     /**
@@ -35,7 +47,8 @@ class BookController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $book = Book::find($id);
+        return view('books.show', compact('book'));
     }
 
     /**
@@ -43,15 +56,8 @@ class BookController extends Controller
      */
     public function edit(string $id)
     {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
+        $book = Book::find($id);
+        return view('books.edit', compact('book'));
     }
 
     /**
@@ -59,6 +65,7 @@ class BookController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        Book::destroy($id);
+        return redirect()->route('books.index') ->with('success', 'Xóa sách thành công');
     }
 }
