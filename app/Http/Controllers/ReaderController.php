@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Log;
 use Illuminate\Http\Request;
 use App\Models\Reader;
 
@@ -30,16 +30,22 @@ class ReaderController extends Controller
      */
     public function store(Request $request)
     {
+        
         $request->validate([
-            'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required'
+            'name' => 'required|string|max:255',
+            'birthday' => 'required|max:255',
+            'address' => 'required|string|max:15',
+            'phone' => 'required|string|max:255'
         ]);
-
-        Reader::create($request->all());
-        return redirect()->route('readers.index') ->with('success', 'Thêm độc giả thành công');
+        try {
+            Reader::create($request->only(['name', 'birthday', 'address', 'phone']));
+            return redirect()->route('readers.index')->with('success', 'Thêm độc giả thành công');
+        } catch (\Exception $e) {
+            Log::error('Error adding reader: ' . $e->getMessage());
+            return redirect()->route('readers.index')->with('error', 'Có lỗi xảy ra khi thêm độc giả.');
+        }
     }
+
 
     /**
      * Display the specified resource.
@@ -73,7 +79,7 @@ class ReaderController extends Controller
 
         $reader = Reader::find($id);
         $reader->update($request->all());
-        return redirect()->route('readers.index') ->with('success', 'Cập nhật độc giả thành công');
+        return redirect()->route('readers.index')->with('success', 'Cập nhật độc giả thành công');
     }
 
     /**
@@ -82,6 +88,6 @@ class ReaderController extends Controller
     public function destroy(string $id)
     {
         Reader::destroy($id);
-        return redirect()->route('readers.index') ->with('success', 'Xóa độc giả thành công');
+        return redirect()->route('readers.index')->with('success', 'Xóa độc giả thành công');
     }
 }
