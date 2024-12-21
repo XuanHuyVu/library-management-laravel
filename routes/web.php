@@ -22,23 +22,24 @@ Route::get('/', function () {
 
 // Routes for Books
 Route::prefix('books')->group(function () {
-    Route::get('/', [BookController::class, 'index'])->name('books.index');
-    Route::get('/create', [BookController::class, 'create'])->name('books.create');
-    Route::post('/store', [BookController::class, 'store'])->name('books.store');
-    Route::get('/edit/{id}', [BookController::class, 'edit'])->name('books.edit');
-    Route::put('/update/{id}', [BookController::class, 'update'])->name('books.update');
-    Route::delete('/delete/{id}', [BookController::class, 'destroy'])->name('books.destroy');
-
+    Route::get('/books', [BookController::class, 'index'])->name('books.index');
+    Route::get('/books/create', [BookController::class, 'create'])->name('books.create');
+    Route::post('/books', [BookController::class, 'store'])->name('books.store');
+    Route::get('/books/{id}', [BookController::class, 'show'])->name('books.show');
+    Route::get('/books/{id}/edit', [BookController::class, 'edit'])->name('books.edit');
+    Route::put('/books/{id}', [BookController::class, 'update'])->name('books.update');
+    Route::delete('/books/{id}', [BookController::class, 'destroy'])->name('books.destroy');
 });
 
 // Route cho Người đọc
 Route::prefix('readers')->group(function () {
-    Route::get('/', [ReaderController::class, 'index'])->name('readers.index');
-    Route::get('/create', [ReaderController::class, 'create'])->name('readers.create');
-    Route::post('/store', [ReaderController::class, 'store'])->name('readers.store');
-    Route::get('/edit/{id}', [ReaderController::class, 'edit'])->name('readers.edit');
-    Route::put('/update/{id}', [ReaderController::class, 'update'])->name('readers.update');
-    Route::delete('/delete/{id}', [ReaderController::class, 'destroy'])->name('readers.destroy');
+    Route::get('/readers', [ReaderController::class, 'index'])->name('readers.index');
+    Route::get('/readers/create', [ReaderController::class, 'create'])->name('readers.create');
+    Route::post('/readers', [ReaderController::class, 'store'])->name('readers.store');
+    Route::get('/readers/{id}', [ReaderController::class, 'show'])->name('readers.show');
+    Route::get('/readers/{id}/edit', [ReaderController::class, 'edit'])->name('readers.edit');
+    Route::put('/readers/{id}', [ReaderController::class, 'update'])->name('readers.update');
+    Route::delete('/readers/{id}', [ReaderController::class, 'destroy'])->name('readers.destroy');
 });
 
 // Route cho Mượn sách

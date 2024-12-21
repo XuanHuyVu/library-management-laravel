@@ -26,6 +26,7 @@
                 <td>{{ $book->year }}</td>
                 <td>{{ $book->quantity }}</td>
                 <td>
+                    <a href="{{ route('books.show', $book->id) }}" class="btn btn-success">Xem</a>
                     <a href="{{ route('books.edit', $book->id) }}" class="btn btn-warning">Sửa</a>
                     <form action="{{ route('books.destroy', $book->id) }}" method="POST" style="display:inline-block;">
                         @csrf
