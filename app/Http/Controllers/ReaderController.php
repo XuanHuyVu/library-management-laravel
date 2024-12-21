@@ -72,9 +72,9 @@ class ReaderController extends Controller
     {
         $request->validate([
             'name' => 'required',
-            'email' => 'required',
-            'phone' => 'required',
-            'address' => 'required'
+            'birthday' => 'required',
+            'address' => 'required',
+            'phone' => 'required'
         ]);
 
         $reader = Reader::find($id);

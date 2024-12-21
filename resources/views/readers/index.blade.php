@@ -25,7 +25,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach ($readers as $reader)
+            @forelse ($readers as $reader)
                 <tr>
                     <td>{{ $reader->name }}</td>
                     <td>{{ $reader->birthday }}</td>
@@ -33,17 +33,21 @@
                     <td>{{ $reader->phone }}</td>
                     <td>
                         <!-- Edit Button -->
-                        <a href="{{ route('readers.edit', $reader) }}" class="btn btn-warning btn-sm">Edit</a>
+                        <a href="{{ route('readers.edit', $reader->id) }}" class="btn btn-warning btn-sm">Edit</a>
                         
                         <!-- Delete Form -->
-                        <form action="{{ route('readers.destroy', $reader) }}" method="POST" style="display:inline;">
+                        <form action="{{ route('readers.destroy', $reader->id) }}" method="POST" style="display:inline;">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
                     </td>
                 </tr>
-            @endforeach
+            @empty
+                <tr>
+                    <td colspan="5" class="text-center">No readers found.</td>
+                </tr>
+            @endforelse
         </tbody>
     </table>
 @endsection

@@ -3,7 +3,7 @@
 @section('content')
     <h1 class="mb-4">Edit Reader</h1>
 
-    <form action="{{ route('readers.update', $reader) }}" method="POST">
+    <form action="{{ route('readers.update', $reader->id) }}" method="POST">
         @csrf
         @method('PUT')
         <div class="mb-3">
@@ -27,5 +27,7 @@
         </div>
 
         <button type="submit" class="btn btn-success">Save Changes</button>
+
+        <a href="{{ route('readers.index') }}" class="btn btn-secondary">Cancel</a>
     </form>
 @endsection
