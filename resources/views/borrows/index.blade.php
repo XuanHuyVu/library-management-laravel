@@ -26,7 +26,7 @@
             @foreach ($borrows as $borrow)
                 <tr>
                     <td>{{ $borrow->reader->name }}</td>
-                    <td>{{ $borrow->book->title }}</td>
+                    <td>{{ $borrow->book->name }}</td>
                     <td>{{ $borrow->borrowed_date }}</td>
                     <td>{{ $borrow->returned_date }}</td>
                     <td>{{ $borrow->status }}</td>
