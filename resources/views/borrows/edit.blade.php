@@ -19,7 +19,7 @@
             <label for="book_id" class="form-label">Book:</label>
             <select name="book_id" class="form-control" required>
                 @foreach ($books as $book)
-                    <option value="{{ $book->id }}" {{ $borrow->book_id == $book->id ? 'selected' : '' }}>{{ $book->title }}</option>
+                    <option value="{{ $book->id }}" {{ $borrow->book_id == $book->id ? 'selected' : '' }}>{{ $book->name }}</option>
                 @endforeach
             </select>
         </div>
