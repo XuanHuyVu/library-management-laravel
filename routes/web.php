@@ -5,20 +5,16 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\BookController;
 use App\Http\Controllers\ReaderController;
 use App\Http\Controllers\BorrowController;
+use App\Http\Controllers\AuthController;
 
-
-// Route::get('/login', function () {
-//     return view('admin.login');
-// });
-
-// Route::get('/register', function () {
-//     return view('admin.register');
-// });
+Route::get('/login',[AuthController::class,'ShowLoginForm'])->name('login');
+Route::post('/login',[AuthController::class,'login']);
+Route::post('/logout',[AuthController::class,'logout'])->name('logout');
 
 // Route for dashboard
 Route::get('/', function () {
     return view('admin.dashboard'); // Load the view resources/views/admin/dashboard.blade.php
-})->name('dashboard');
+})->middleware('auth')->name('dashboard');
 
 // Routes for Books
 Route::prefix('books')->group(function () {
