@@ -72,10 +72,11 @@ class BorrowController extends Controller
     public function update(Request $request, string $id)
     {
         $request->validate([
+            'reader_id' => 'required',
             'book_id' => 'required',
-            'user_id' => 'required',
-            'borrow_date' => 'required',
-            'return_date' => 'required'
+            'borrowed_date' => 'required',
+            'returned_date' => 'required',
+            'status' => 'required'
         ]);
 
         $borrow = Borrow::find($id);
