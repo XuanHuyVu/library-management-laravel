@@ -18,7 +18,7 @@
             <label for="book_id" class="form-label">Book:</label>
             <select name="book_id" class="form-control" required>
                 @foreach ($books as $book)
-                    <option value="{{ $book->id }}">{{ $book->title }}</option>
+                    <option value="{{ $book->id }}">{{ $book->name }}</option>
                 @endforeach
             </select>
         </div>
@@ -26,6 +26,11 @@
         <div class="mb-3">
             <label for="borrowed_date" class="form-label">Borrowed Date:</label>
             <input type="date" name="borrowed_date" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="returned_date" class="form-label">Returned Date:</label>
+            <input type="date" name="returned_date" class="form-control" required>
         </div>
 
         <div class="mb-3">
