@@ -47,4 +47,5 @@ Route::prefix('borrows')->group(function () {
     Route::get('/borrows/{id}/edit', [BorrowController::class, 'edit'])->name('borrows.edit');
     Route::put('/borrows/{id}', [BorrowController::class, 'update'])->name('borrows.update');
     Route::delete('/borrows/{id}', [BorrowController::class, 'destroy'])->name('borrows.destroy');
+    Route::get('/history/{reader_id}', [BorrowController::class, 'history'])->name('borrows.history');
 });
