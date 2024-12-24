@@ -37,6 +37,7 @@
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger btn-sm">Delete</button>
                         </form>
+                        <a href="{{ route('borrows.history', $borrow) }}" class="btn btn-info btn-sm">History</a>
                     </td>
                 </tr>
             @endforeach

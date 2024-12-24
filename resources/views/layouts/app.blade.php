@@ -28,27 +28,10 @@
                     <li class="nav-item">
                         <a class="nav-link" href="{{ route('borrows.index') }}">Mượn sách</a>
                     </li>
+                    {{-- <li class="btn btn-primary">
+                        <a class="nav-link" href="{{ route('logout') }}">Đăng xuất</a>
+                    </li> --}}
                 </ul>
-                {{-- <ul class="navbar-nav ms-auto">
-                    @guest
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">Login</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">Register</a>
-                        </li>
-                    @else
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('logout') }}" 
-                               onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                Logout
-                            </a>
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
-                    @endguest
-                </ul> --}}
             </div>
         </div>
     </nav>

@@ -92,4 +92,13 @@ class BorrowController extends Controller
         Borrow::destroy($id);
         return redirect()->route('borrows.index') ->with('success', 'Xóa sách thành công');
     }
+
+    // Hiển thị lịch sử mượn sách của độc giả
+    public function history($reader_id)
+    {
+        $reader = Reader::findOrFail($reader_id);
+        $borrows = Borrow::where('reader_id', $reader_id)->with('book')->get();
+
+        return view('borrows.history', compact('reader', 'borrows'));
+    }
 }
